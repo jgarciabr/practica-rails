@@ -48,17 +48,13 @@ function listpost(user_id) {
 }
 
 function edit_user(id){	
-		hideData();
-
-	$.getJSON("/users/"+id,function(dataw){
-		console.log(dataw)
-		$("#form_user").empty();
-		$("#form_user").dialog({closeText:"X"});
-	})
+	hideData();
 
 	$.get( "/users/"+id+"/edit", function( data ) {
-	  $("#form_user").html( data );
-	  	  $("#links").remove();	
+		$("#form_user").empty();
+		$("#form_user").dialog({closeText:"X"});
+	  	$("#form_user").html( data );
+	  	$("#links").remove();	
 	});
 	
 };
@@ -75,9 +71,3 @@ function hideData(){
 			$("#show_post").dialog('close');
    		}
 }
-
-$(document).ready(function(){
-	document.addEventListener("turbolinks:before-render", function() {
-  		Turbolinks.clearCache()
-	})
-});
